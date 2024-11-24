@@ -26,4 +26,47 @@ function getStudentAttendance($studentId) {
     }
     return $records;
 }
+
+
+function getStudentsByClassId($classid) {
+    global $pdo;
+    $query = "SELECT u.id, u.fullname, u.email,
+              COALESCE(ROUND((SUM(a.isPresent) / COUNT(a.classid)) * 100, 2), 0) AS attendance_percentage
+              FROM user u
+              LEFT JOIN attendance a ON u.id = a.studentid AND a.classid = :classid
+              WHERE u.class = :classid AND u.role = 'student'
+              GROUP BY u.id";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute(['classid' => $classid]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+function getAttendanceForDate($classid, $date) {
+    global $pdo;
+
+    $query = "
+        SELECT u.id AS studentid, u.fullname, u.email, 
+               a.isPresent, a.comments
+        FROM user u
+        LEFT JOIN attendance a 
+        ON u.id = a.studentid AND a.classid = :classid AND a.date = :date
+        WHERE u.role = 'student'
+    ";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([
+        'classid' => $classid,
+        'date' => $date
+    ]);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+function getClassDetails($classid) {
+    global $pdo;
+    $query = "SELECT starttime, endtime FROM class WHERE id = :classid";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute(['classid' => $classid]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 ?>
