@@ -21,8 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<?php include '../templates/master.php'; ?>
-<div class="container">
+<?php
+$content = '
+<div>
     <form method="POST">
         <h1>NAS</h1>
         <div class="form-group"> 
@@ -35,5 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <button type="submit">Login</button>
     </form>
-    <?php if (isset($error)) echo "<p style='color: red;'>$error</p>"; ?>
+    ' . (isset($error) ? "<p style=\'color: red;\'>$error</p>" : '') . '
 </div>
+';
+include '../templates/master.php';
+?>
