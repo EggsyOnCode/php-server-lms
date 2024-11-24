@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <?php include '../templates/master.php'; ?>
-<div>
+<div class="container">
     <form method="POST">
         <h1>NAS</h1>
         <div class="form-group"> 
