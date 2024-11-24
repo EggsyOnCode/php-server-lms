@@ -45,7 +45,7 @@ main {
   align-items: center;
 }
 
-form {
+.container {
   background-color: #fff;
   margin: 20px 0;
   border: 1px solid #ddd;
@@ -56,9 +56,28 @@ form {
   text-align: center;
 }
 
-form h1 {
+.container.large {
+  width: 90vw;
+  height: 80vh;
+}
+
+h1 {
   font-weight: 900;
   font-size: 30px;
+  margin-bottom: 20px; 
+  color: var(--theme_colour);
+}
+
+h2 {
+  font-weight: 800;
+  font-size: 28px;
+  margin-bottom: 20px; 
+  color: var(--theme_colour);
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 26px;
   margin-bottom: 20px; 
   color: var(--theme_colour);
 }
@@ -117,4 +136,101 @@ form input:focus {
   outline: none; 
   border-color: var(--theme_colour);
   box-shadow: 0 0 5px rgba(0, 139, 139, 0.5);
+}
+
+ul {
+  list-style: none;
+  margin-top: 20px;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.session {
+  background-color: var(--theme_colour, #4a90e2); /* Fallback color */
+  color: white;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: popIn 0.3s ease;
+}
+
+.session:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.session p {
+  margin: 8px 0; /* Vertical spacing */
+  padding-bottom: 8px; /* Add padding to separate the text from the border */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Light, semi-transparent border */
+}
+
+.session p:nth-last-child(2) {
+  border-bottom: none;
+}
+
+.session a {
+  text-decoration: none;
+  color: white;
+  background-color: #ff9800;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: inline-block;
+  text-align: center;
+}
+
+.session a:hover {
+  background-color: #e68900;
+}
+
+.session a:active {
+  background-color: #d97a00;
+}
+
+.attendance {
+  background-color: var(--theme_colour);
+  color: white;
+  width: 100%;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: popIn 0.3s ease;
+}
+
+.attendance:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 700px) {
+  ul {
+    flex-direction: column;
+  }
+  .session {
+    margin-bottom: 15px;
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
