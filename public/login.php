@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <?php
 $content = '
-<div>
+<div class="container">
     <form method="POST">
         <h1>NAS</h1>
         <div class="form-group"> 
